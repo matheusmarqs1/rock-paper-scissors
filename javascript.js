@@ -17,13 +17,14 @@ function getComputerChoice(){
 
 //function with logic to obtain the choice of the user
 function getHumanChoice(choice){
-    if(choice.toLowerCase() === "rock"){
+    choice = choice.toLowerCase();
+    if(choice === "rock"){
         return "Rock";
     }
-    else if(choice.toLowerCase() === "paper"){
+    else if(choice === "paper"){
         return "Paper";
     }
-    else if(choice.toLowerCase() === "scissors"){
+    else if(choice === "scissors"){
         return "Scissors";
     }
     else{
@@ -32,60 +33,62 @@ function getHumanChoice(choice){
 }
 
 // function with logic for a round
-function playRound(computerChoice, humanChoice){
-    if(computerChoice === "Paper" && humanChoice === "Rock"){
-        console.log("You lose! Paper beats Rock");
-        ++computerScore;
-    }
-    else if (computerChoice === "Rock" && humanChoice === "Scissors") {
-        console.log("You lose! Rock beats Scissors");
-        ++computerScore;
-    }
-    else if (computerChoice === "Scissors" && humanChoice === "Paper"){
-        console.log("You lose! Scissors beats Paper");
-        ++computerScore;
-    }
-    else if(computerChoice === "Rock" && humanChoice === "Paper"){
-        console.log("You win! Paper beats Rock");
-        ++humanScore;
-    }
-    else if (computerChoice === "Scissors" && humanChoice === "Rock") {
-        console.log("You win! Rock beats Scissors");
-        ++humanScore;
-    }
-    else if (computerChoice === "Paper" && humanChoice === "Scissors"){
-        console.log("You win! Scissors beats Paper");
-        ++humanScore;
-    }
-    else if(computerChoice === "Rock" && humanChoice === "Rock"){
-        console.log("It's a tie! Rock against Rock");
-        
-    }
-    else if (computerChoice === "Scissors" && humanChoice === "Scissors") {
-        console.log("It's a tie! Scissors against Scissors");
-        
-    }
-    else if (computerChoice === "Paper" && humanChoice === "Paper") {
-        console.log("It's a tie! Paper against Paper");
-        
+function playSingleGame(computerChoice, humanChoice){
+    
+    if((computerChoice === "Paper" && humanChoice === "Rock" ) || (computerChoice === "Rock" && humanChoice === "Scissors") 
+        || (computerChoice === "Scissors" && humanChoice === "Paper")){
+            console.log("You lose! " + `${computerChoice}` + " beats " + `${humanChoice}`);
+            computerScore++;
     }
     
+    else if((computerChoice === "Rock" && humanChoice === "Paper" ) || (computerChoice === "Scissors" && humanChoice === "Rock") 
+        || (computerChoice === "Paper" && humanChoice === "Scissors") ){
+                console.log("You win! " + `${humanChoice}` + " beats " +  `${computerChoice}`);
+                humanScore++;
+    }
+   
+    else if(computerChoice === humanChoice){
+        console.log("It's a tie! " + `${computerChoice}` + " against " + `${humanChoice}`);
+    }
+    else{
+        console.log("Invalid round!");
+    }
 
 }
 
+//function with logic to repeat a game the equivalent of five rounds
+function playGame(){
+    
+    
+    function playRound(){
+        let choice = prompt("Rock, paper, scissors");
+        let computerSelection = getComputerChoice();
+        let humanSelection = getHumanChoice(choice);
+        playSingleGame(computerSelection, humanSelection);
+        
+    }
+    
+    playRound();
+    playRound();
+    playRound();
+    playRound();
+    playRound();
+    
+    if(humanScore > computerScore){
+        console.log("Congrats! You win!")
+    }
+    else if(humanScore < computerScore){
+        console.log("Oh no! You lose!");
+    }
+    else{
+        console.log("WOW! Tie Game!");
+    }
+    console.log(humanScore);
+    console.log(computerScore);
 
-// Ask the user
-let choice = prompt("Rock, paper or scissors?");
+}
 
-// Creates scoring systems
 let humanScore = 0;
 let computerScore = 0;
-
-
-// Sending data to the function with game logic
-const computerSelection = getComputerChoice();
-const humanSelection = getHumanChoice(choice);
-
-// Run the round
-playRound(computerSelection, humanSelection);
+playGame();
 
