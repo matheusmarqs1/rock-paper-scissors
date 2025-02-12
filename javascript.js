@@ -32,39 +32,39 @@ function getHumanChoice(choice){
     }
 }
 
-// function with logic for a round
-function playSingleGame(computerChoice, humanChoice){
-    
-    if((computerChoice === "Paper" && humanChoice === "Rock" ) || (computerChoice === "Rock" && humanChoice === "Scissors") 
-        || (computerChoice === "Scissors" && humanChoice === "Paper")){
-            console.log("You lose! " + `${computerChoice}` + " beats " + `${humanChoice}`);
-            computerScore++;
-    }
-    
-    else if((computerChoice === "Rock" && humanChoice === "Paper" ) || (computerChoice === "Scissors" && humanChoice === "Rock") 
-        || (computerChoice === "Paper" && humanChoice === "Scissors") ){
-                console.log("You win! " + `${humanChoice}` + " beats " +  `${computerChoice}`);
-                humanScore++;
-    }
-   
-    else if(computerChoice === humanChoice){
-        console.log("It's a tie! " + `${computerChoice}` + " against " + `${humanChoice}`);
-    }
-    else{
-        console.log("Invalid round!");
-    }
-
-}
-
-//function with logic to repeat a game the equivalent of five rounds
+// function that encapsulates the general logic of the game
 function playGame(){
     
+    // defining scoring variables
+    let humanScore = 0;
+    let computerScore = 0;
     
+    // function that encapsulates the logic of a single round
     function playRound(){
         let choice = prompt("Rock, paper, scissors");
+        // obtains data from the functions responsible for dealing with choices
         let computerSelection = getComputerChoice();
         let humanSelection = getHumanChoice(choice);
-        playSingleGame(computerSelection, humanSelection);
+
+        // test all scenarios of a rock, paper, scissors game and update  scores
+        if((computerSelection === "Paper" && humanSelection === "Rock" ) || (computerSelection === "Rock" && humanSelection === "Scissors") 
+            || (computerSelection === "Scissors" && humanSelection === "Paper")){
+                console.log("You lose! " + `${computerSelection}` + " beats " + `${humanSelection}`);
+                computerScore++;
+        }
+        
+        else if((computerSelection === "Rock" && humanSelection === "Paper" ) || (computerSelection === "Scissors" && humanSelection === "Rock") 
+            || (computerSelection === "Paper" && humanSelection === "Scissors") ){
+                    console.log("You win! " + `${humanSelection}` + " beats " +  `${computerSelection}`);
+                    humanScore++;
+        }
+       
+        else if(computerSelection === humanSelection){
+            console.log("It's a tie! " + `${computerSelection}` + " against " + `${humanSelection}`);
+        }
+        else{
+            console.log("Invalid round!");
+        }
         
     }
     
@@ -73,7 +73,7 @@ function playGame(){
     playRound();
     playRound();
     playRound();
-    
+    // compare scores and evaluate the winner
     if(humanScore > computerScore){
         console.log("Congrats! You win!")
     }
@@ -83,12 +83,7 @@ function playGame(){
     else{
         console.log("WOW! Tie Game!");
     }
-    console.log(humanScore);
-    console.log(computerScore);
-
 }
 
-let humanScore = 0;
-let computerScore = 0;
 playGame();
 
