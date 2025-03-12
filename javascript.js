@@ -1,5 +1,5 @@
 
-/*--------------------                          ROCK, PAPER, SCISSORS           --------------------                                      */
+/*--------------------                  ROCK, PAPER, SCISSORS           --------------------                                      */
 
 
 //Function with logic to obtain the choice of the computer
@@ -68,11 +68,7 @@ function playGame(){
         
     }
     
-    playRound();
-    playRound();
-    playRound();
-    playRound();
-    playRound();
+    
     // compare scores and evaluate the winner
     if(humanScore > computerScore){
         console.log("Congrats! You win!")
