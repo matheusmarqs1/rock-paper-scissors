@@ -9,6 +9,8 @@ buttons.forEach((button) => {
     button.addEventListener("click", () => playRound(button.id));
 });
 
+let result = document.querySelector(".results");
+
 // By using the Math.random method, we can generate random numbers between 0 and 1 and divide them into predefined intervals. 
 // Each interval corresponds to a specific range of values, representing one of the computer's three possible choices.
 
@@ -33,30 +35,33 @@ function playRound(humanSelection){
     
     
     let computerSelection = getComputerChoice();
-
+    
     if((computerSelection === "paper" && humanSelection === "rock" ) || (computerSelection === "rock" && humanSelection === "scissors") 
         || (computerSelection === "scissors" && humanSelection === "paper")){
-            console.log("You lose! " + `${computerSelection}` + " beats " + `${humanSelection}`);
+            result.textContent = "You lose! " + `${computerSelection}` + " beats " + `${humanSelection}`;
             computerScore++;
     }
         
     else if((computerSelection === "rock" && humanSelection === "paper" ) || (computerSelection === "scissors" && humanSelection === "rock") 
         || (computerSelection === "paper" && humanSelection === "scissors") ){
-                console.log("You win! " + `${humanSelection}` + " beats " +  `${computerSelection}`);
+                result.textContent = "You win! " + `${humanSelection}` + " beats " +  `${computerSelection}`;
                 humanScore++;
     }
        
     else if(computerSelection === humanSelection){
-        console.log("It's a tie! " + `${computerSelection}` + " against " + `${humanSelection}`);
+        result.textContent = "It's a tie! " + `${computerSelection}` + " against " + `${humanSelection}`;
     }
-        
+
     else{
-        console.log("Invalid round!");
+        result.textContent = "Invalid round!";
     }
         
 }
 
 
+
+
+/*
 if(humanScore > computerScore){
     console.log("Congrats! You win!")
 }
@@ -66,3 +71,4 @@ else if(humanScore < computerScore){
 else{
     console.log("WOW! Tie Game!");
 }
+*/
