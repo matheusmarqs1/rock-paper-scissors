@@ -10,7 +10,9 @@ buttons.forEach((button) => {
 });
 
 let result = document.querySelector(".results");
-
+let score = document.querySelector(".score");
+let scoreHuman = document.createElement("li");
+let scoreComputer = document.createElement("li");
 
 // By using the Math.random method, we can generate random numbers between 0 and 1 and divide them into predefined intervals. 
 // Each interval corresponds to a specific range of values, representing one of the computer's three possible choices.
@@ -38,6 +40,7 @@ function playRound(humanSelection){
         buttons.forEach((button) => {
             button.removeEventListener("click", () => playRound(button.id));
         });
+        result.textContent = '';
         return;
     }
     else{
@@ -64,20 +67,12 @@ function playRound(humanSelection){
         else{
             result.textContent = "Invalid round!";
         }
+
+        scoreHuman.textContent = "Human Score: " + `${humanScore}`;
+        score.append(scoreHuman);
+        scoreComputer.textContent = "Computer Score: " + `${computerScore}`;
+        score.append(scoreComputer);
+
     }
-    
         
 }
-
-
-/*
-if(humanScore > computerScore){
-    console.log("Congrats! You win!")
-}
-else if(humanScore < computerScore){
-    console.log("Oh no! You lose!");
-}
-else{
-    console.log("WOW! Tie Game!");
-}
-*/
