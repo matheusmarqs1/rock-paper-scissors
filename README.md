@@ -41,6 +41,12 @@ git clone https://github.com/matheusmarqs1/rock-paper-scissors.git
 
 ---
 
+## 📸 Preview
+
+![Screenshot](./assets/preview.png)
+
+---
+
 ## 📌 Future Improvements
 
 - Add a "Play Again" button
